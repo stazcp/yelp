@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-react"],
+  "rules": {
+    "react/prop-types": "off",
+    "no-async-promise-executor": "off",
+    "no-misleading-character-class": "off",
+    "no-useless-catch": "off"
+  }
+}
