@@ -1,15 +1,10 @@
 const apiKey =
   'kxiNSGUvtvhedY2m02B__Mm5jojLg7jXoszmcOurjPlx1rOeEUwEXds-J8rYvfqgwgq2HgvyMfkhHmIHXDkTFcrMaALJ_-LaQZuQrnVyFhndYk-cIQLsfIn2iFIPX3Yx';
 const corsURL = 'https://cors-anywhere.herokuapp.com/';
+const corsURL2 = 'https://cors-proxy.htmldriven.com/?url=';
 const baseURL = 'https://api.yelp.com/v3/';
 
-const Yelp = {
-  autocomplete(){
-    return fetch(
-      `${baseURL}`
-    )
-  },
-  search(term, location, sortBy){
+const searchYelp = (term, location, sortBy) => {
     return fetch(
       `${corsURL}${baseURL}businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
       {
@@ -23,7 +18,6 @@ const Yelp = {
       .then((jsonResponse) => {
         if (jsonResponse.businesses) {
           return jsonResponse.businesses.map((business) => {
-            console.log(business);
             return {
               id: business.id,
               imageSrc: business.image_url,
@@ -39,7 +33,6 @@ const Yelp = {
           });
         }
       });
-  }
 };
 
-export default Yelp;
+export default searchYelp;

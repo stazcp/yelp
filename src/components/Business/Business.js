@@ -1,10 +1,8 @@
 import React from 'react'
 import './Business.css'
 
-class Business extends React.Component{
-  render () {
-    const { business } = this.props;
-    //const business = this.props.business; ??
+function Business(props){
+    const { business } = props;
 
     return (
       <div className='Business'>
@@ -31,7 +29,6 @@ class Business extends React.Component{
         </div>
       </div>
     )
-  }
 }
 
 export default Business;

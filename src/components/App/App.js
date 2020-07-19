@@ -1,34 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import BusinessList from '../BusinessList/BusinessList'
 import SearchBar from '../SearchBar/SearchBar'
-import Yelp from '../../util/Yelp'
+import searchYelp from '../../util/Yelp'
 
+// want to initiate a default search or recommendations for the user
+function App(_props) {
+  const[businesses,setBusinesses] = useState([])
 
-class App extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = { 
-      businesses: []
-    };
-    this.searchYelp = this.searchYelp.bind(this);
-  }
+  // instead of componentDidMount = () => {} 
+  // renders a default search on homepage
+  useEffect(() =>{
+    searchYelp('pizza', 'SF', 'rating').then(businesses => {
+      setBusinesses(businesses);
+    })
+  })
 
-  searchYelp(term, location, sortBy){
-    Yelp.search(term, location, sortBy).then(businesses => {
-      this.setState({businesses: businesses})
+  const search = (term, location, sortBy) => {
+    searchYelp(term, location, sortBy).then(businesses => {
+      setBusinesses(businesses);
     });
   }
 
-  render(){
-    return (
-      <div className='App'>
-        <h1>ravenous</h1>
-        <SearchBar searchYelp={this.searchYelp}/>
-        <BusinessList businesses={this.state.businesses}/>
-      </div>
-    )
-  }
+  return (
+    <div className='App'>
+      <h1>ravenous</h1>
+      <SearchBar searchYelp={search}/>
+      <BusinessList businesses={businesses}/>
+    </div>
+  )
 }
 
 export default App
