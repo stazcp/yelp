@@ -4,7 +4,7 @@ import './SearchBar.css'
 function SearchBar(props) {
   const[term, setTerm] = useState("");
   const[location, setLocation] = useState("");
-  const[sortBy, setSortBy] = useState("");
+  const[sortBy, setSortBy] = useState("best_match");  //setting default state
 
   const sortByOptions = {
     'Best Match': 'best_match',
@@ -25,11 +25,11 @@ function SearchBar(props) {
   }
 
   const handleTermChange = (event) =>{
-    setTerm(event);
+    setTerm(event.target.value);
   }
 
   const handleLocationChange = (event) =>{
-    setLocation(event.target.value.value);
+    setLocation(event.target.value);
   }
 
   const handleSearch = (event) =>{

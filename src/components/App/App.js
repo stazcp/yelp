@@ -14,7 +14,7 @@ function App(_props) {
     searchYelp('pizza', 'SF', 'rating').then(businesses => {
       setBusinesses(businesses);
     })
-  })
+  },[]) // using empty array to make it run only once
 
   const search = (term, location, sortBy) => {
     searchYelp(term, location, sortBy).then(businesses => {
